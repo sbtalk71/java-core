@@ -1,16 +1,20 @@
 package com.demo.interfaces;
 
+import java.util.Optional;
+
 public class InterfaceMain {
 
 	public static void main(String[] args) {
 		
-		MyConnection conn=new OracleDB();
+		Optional<MyConnection> conn=DBFactory.getDB("oracles");
 		
-		System.out.println(conn.getClass().getName());
+		if(conn.isPresent()) {
+		System.out.println(conn.get().getClass().getName());
 		
-		System.out.println(conn.getConnection());
+		System.out.println(conn.get().getConnection());
 		
 		System.out.println(MyConnection.mystaticMethod());
+		}
 
 	}
 
